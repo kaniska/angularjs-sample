@@ -1,0 +1,52 @@
+angular.module('myApp')
+.factory('User', function($resource) {
+  return $resource('/api/users/:userId.json', {
+    userId: '@id'
+  }, {
+    // Custom routes if necessary
+    update: {
+      method: 'PUT' // There is no `update` method with PUT unless
+    }
+  })
+});
+
+
+User.get(function(response) {
+  // Alrighty, we got the user in the response
+}, function(error) {
+  // An error happened :(
+})
+
+
+$scope.users = User.query();
+
+User.get({
+  id: '123'  // use replacement variable
+}, function(response) {
+  // Alrighty, we got the user in the response
+}, function(error) {
+  // An error happened :(
+})
+
+User.save({
+  name: 'Ari Lerner'  // use replacement variable
+}, function(response) {
+  // Alrighty, we got the user in the response
+}, function(error) {
+  // An error happened :(
+})
+
+var newUser = new User({
+  name: 'Ari Lerner'
+});
+newUser.$save();
+
+
+User.update({
+  id: '123',
+  name: 'Ari Lerner'
+}, function(response) {
+  // Alrighty, we got the user in the response
+}, function(error) {
+  // An error happened :(
+})

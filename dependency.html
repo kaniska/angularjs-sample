@@ -1,0 +1,67 @@
+package io.fullstack.examples.di;
+
+import com.google.inject.Inject;
+
+public class Person {
+  private MessageService messageService;
+
+  @Inject
+  public Person(MessageService messageService){
+    this.messageService = messageService;
+  }
+
+  public void greetFriend(){
+    messageService.sendMessage("Hello", "Hello my friend :)");
+  }
+}
+///
+
+package io.fullstack.examples.di;
+
+import com.google.inject.Guice;
+import com.google.inject.Injector;
+
+public class Main {
+  public static void main(String[] args) {
+    Injector injector = Guice.createInjector(new ProjectModule());
+    Person person = injector.getInstance(Person.class);
+    person.greetFriend();
+  }
+}
+
+//////
+
+JQUERY
+
+window.jQuery = {};
+window.myLibrary = (function() {
+  // my custom functionality here
+})();
+
+
+
+document.findElementById('buyBtn', function() {
+  // use myLibrary
+  myLibrary.buy();
+});
+
+from where to lookup ... ugly 
+
+// another way ....  annotate the dependency .. way of injections ...
+
+// $scope = $rootScope.$new();
+
+angular.module('myApp', [])
+.controller('HomeController', 
+  function($scope) { // <---- this is the dependency injection
+    // because we've named $scope
+    // Angular will provide this to our controller
+}); 
+
+// this is also an example of dependency 
+
+angular.module('myApp', [
+  'api',
+  'home',
+  'user.home'
+]);

@@ -1,0 +1,39 @@
+var promise = $http.get('/weather.json');
+
+promise.then(function(response) {
+  if (response.data.city === "San Francisco") {
+    return "beautiful";
+  } else {
+    return data.data;
+  }
+});
+
+
+var promise = $http({
+  method: 'GET',
+  url: '/some/url'
+});
+
+var promise = $http({
+  method: 'GET',
+  url: '/some/url',
+  params: {
+    name: 'Ari',
+    city: 'SF'
+  }
+});
+
+// promise chain ...
+
+var getData = function() {
+  return $http({
+    url: '/some/url'
+  }).then(function(response) {   // create a second promise to wrap up promise
+    return {
+      length: response.data.length,
+      data: response.data
+    };
+  });
+};
+// NOTE: getData() returns a promise
+

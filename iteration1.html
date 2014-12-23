@@ -1,0 +1,13 @@
+<div ng-controller="HomeController">
+  <table>
+    <thead>
+      <tr><th>Name</th><th>Email</th></tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="person in people">
+        <td>{{ person.name }}</td>
+        <td>{{ person.email }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

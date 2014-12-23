@@ -1,0 +1,24 @@
+
+
+$ bower install restangular
+
+<script src="vendor/lodash/dist/lodash.min.js"></script>
+<script src="vendor/restangular/restangular.min.js"></script>
+
+angular.module('myApp', ['restangular'])
+
+
+
+.config(function(RestangularProvider) {
+  RestangularProvider.setBaseUrl('http://localhost:3000/api');
+  RestangularProvider.setRequestSuffix('.json');
+  RestangularProvider.setRestangularFields({
+    id: '_id'
+  });
+});
+
+angular.module('myApp')
+.factory('User', function(Restangular) {
+  return Restangular.service('users');
+});
+
